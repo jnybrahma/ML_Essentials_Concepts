@@ -1,0 +1,972 @@
+%--------------------------------------------------- Section 1:Introduction --------------------------------------------------------%
+## Fundamental Machine Learning Problems
+
+https://github.com/coding-minutes/machine-learning-essentials
+
+
+- ML
+>> Ability to learn from data and make a decision.
+
+- Supervised Learning;
+>> Regression
+>> Classification - Text, Images, Numeric Data
+
+- Unsupervised Learning;
+>> Clustering
+>> Dimensionality Reduction.
+
+- Reinforcement Learning
+>> RL is a way for a “learner” (called an agent) to figure out how to behave in an environment by trial and error. 
+>> It doesn’t get told the right answer ahead of time. Instead, it tries things and sees what happens.
+>> The learner gets feedback from the environment in the form of rewards (for doing something good) or penalties (for doing something bad).
+>> Over time, it tries to choose actions that get more reward overall.
+>> Goal of reinforcement learning is to train an agent to complete a task within an uncertain environment.
+>> The agent receives observations and reward from the environment and sends actions to the environment.
+>> The reward neasures how successful action is with respect to completing the task goal.
+
+- What makes RL different from other ML
+>> In supervised learning, you have examples with inputs and correct outputs (labels). 
+>> The model learns by trying to match the labels. RL doesn’t have those — it only gets feedback (reward) after actions.
+>> The reward measures how successful action is with respect to completing the task goal.
+
+
+- Deep Learning
+>> Deep Learning is a subset of machine learning. 
+>> It uses structures called neural networks (loosely inspired by the brain), which have many layers (that’s why “deep”) to learn directly from raw data.
+>> Deep Learning models are data hungry and are more computationally expensive.
+>> Example: - Convolution Neural Network. Image classifier 
+
+-  A Convolutional Neural Network (CNN or ConvNet)
+>> Is a kind of deep learning model especially good for processing data that has a grid-like structure, e.g. images (2D grids of pixels).
+>> They are used a lot for tasks like image classification, object detection, and also for other similar tasks like analysing audio or time-series.
+
+
+- ML techniques and Algorithms;
+>> Linear Regression
+>> Logistic Regression
+>> Principal Component Analysis
+>> Naive Bayes
+>> Decision Trees
+>> Bagging and Boosting
+>> K-NN
+>> K-Means
+>> Neural Networks
+
+- ML Concepts;
+>> Convex Optimisation
+>> Overfitting vs Underfitting
+>> Bias Variance Tradeoff
+>> Performance Metrics
+>> Data Pre-processing
+>> Feature Engineering
+>> Working with numeric data, images & textual data
+>> Parametric vs Non Parametric Techniques
+
+
+https://github.com/coding-minutes/machine-learning-essentials
+
+
+
+%--------------------------------------------------- Section 2: Supervised vs Unsupervised Learning --------------------------------------------------------%
+
+## Supervised Learning;
+- We use labeled datasets (training examples and their associated correct labels) to train algorithms that to classify data or predict outcomes accurently
+
+- Regression and Classification are two task of supervised learning.
+
+- y = f(x) + e
+>> x(input)
+>> y(output) 
+>> f(function)
+>> e(espsilon) - random error with zero mean to account for unmodeled features/inherent noise in the data.
+ 
+[Traning Examples(X,Y)] ===> [Learning Algorithm] ===> [f(hypothesis function)] ===> Ypred
+
+===>[Xtest] ===> [f(hypothesis function)] ===> Ypred 
+
+## Unsupervised Learning;
+- Clustering - K-Means Clustering , Hierarchical Clustering
+- Dimensionality Reduction
+
+%--------------------------------------------------- Section 3:Linear Regression --------------------------------------------------------%
+## Linear Regresssion
+(also known as Ordinary Least Squares)
+
+- Regression predicts a continuous value.
+- The goal of the algorithm is to learn a linear model that predicts a y for an unseen x with minimum error.
+
+- y = f(x) = mx + c
+- y = f(x) = θ(1)X + θ(0)
+           = [θ(0),θ(1)]^T
+		   
+>> Hypothesis :- Assume a Hypothesis function;
+   
+	Linear regression is a parametric method, which means it makes an assumption about the form of the function relating X and Y.
+	So, we decide to approximate y as a linear function of x.
+	
+	   
+
+## Loss / Error Function
+
+	error (abs) = ∑ |y(i) - y(i)|
+	squared Error Fun = 
+	mean squared error = 1/m  
+
+
+## Gradient Descent Optimisation
+   grad = df(x)/dx 
+   gradient = dy/dx
+   y = (x-5)**2 + 3
+   grad(dy/dx) =  d[(x-5)**2 + 3]/dx
+   grad = 2*(x-5)
+	 
+
+## Gradient Descent - For Linear Regression;
+
+
+## Implementation
+
+- During training and modelling we have to find the theta value based on X,Y training data.
+
+## Evaluation
+
+R2Score:- 
+
+>> Coefficient of determination is statistical measure of how well the regression predictions approximate the real data points.
+>> An R2 of 1 indicates that the regression predictions perfectly fit the data.
+
+ score = 1 - ∑{[y(i) - yp(i)]^2}/∑{[(y(i) - y_mean)^2]}
+
+
+
+%--------------------------------------------------- Section 4:Linear Regression - Multi Features --------------------------------------------------------%
+
+## Hypothesis function
+  >> no. of features (x1,x2,x3)
+- x1 = Area of house
+- X2 = Nos.of Room
+- x3 = Locality Score
+
+h(x) =  θ(0) + θ(1)X(1) + θ(2)X(2) + θ(3)X(3) +............. + θ(n)X(n)
+
+Let X(0) = 1
+	  
+h(x) = θ(0)X(0) + ∑[θ(i)X(i)]
+
+h(x) =  ∑[θ(i)X(i)]
+
+where, ∑ = i (0 .....n)
+	
+	X^T = [1,X(1),X(2),X(3)]
+	θ^T = [θ(0),θ(1),θ(2),θ(3),......θ(n)]
+	
+h(x) = (θ^T)(X)
+	
+
+## Loss Function - mean squared error
+
+where ,  ∑ = i (1 .....m)
+
+J(θ) = ∑[(θ^T)(X)(i) - y(i)]^2 / (2*m)
+
+J(θ) = ∑[{h(θ)(X(i))}- y(i)]^2 / (2*m)
+
+ 
+## Training & Gradient Descent;
+
+J(θ) = ∑[{h(θ)(X(i))}- y(i)]^2 / (2*m)
+
+dJ(θ)/dθ(j) = ∑[{h(θ)(X(i))}- y(i)]X(i)(j)/m
+
+
+## Evaluation 
+
+- R2Score
+
+ score = 1 - ∑{[y(i) - yp(i)]^2}/∑{[(y(i) - y_mean)^2]}
+ 
+
+
+%--------------------------------------------------- Section 5:Logistic Regression --------------------------------------------------------%
+
+## Logistic Regression;
+
+- Classification algorithm based upon supervised learning.
+- The goal of the algorithm is to do binary classification, classify the input into one of the two classes.
+- The model outputs the probability of a categorical target variable Y belonging to a certain class.
+
+
+- Notations 
+>> n -> number of features
+>> m -> number of training examples
+>> X -> input data matrix of shap (m x n)
+>> y -> true /target value (can be 0 or 1 only)
+>> x(i) , y(i) -> ith training example
+>> θ -> weights (parameters) of shape ((n+1) x 1)
+>> y_hat(yp) --> hypothesis (outputs value between 0 and 1)
+
+- sigmoid is represented as:
+
+σ = 1/{1+ e(−x)}
+
+- Hypothesis 
+
+Yp(i) = h(θ)(x(i))
+
+Yp(i) = σ {θ(0) + θ(1) X(1) + ...+ θ(n) X(n)}
+
+Yp(i) = σ {θ^T X(i)}
+
+- Loss Function - Binary Crossentropy
+
+where ,  ∑ = i(1 .....m)
+
+J(θ) = - ∑{Y(i) log Yp(i) + (1-Y(i)) log(1-Yp(i))}/m
+
+- Gradient Update 
+
+d(J(θ))/d(θ) = d {- ∑{Y(i) log Yp(i) + (1-Y(i)) log(1-Yp(i))}/m ]/d(θ)
+
+d (J(θ))/d(θ) = - ∑{Y(i) - h(θ) X(i)} X(i)(j)/m
+
+
+##  Multiclass Classification : One Vs Rest Strategy (OvR)
+
+>> The One-vs-Rest strategy splits multi-class classification into one binary classification problem per class.
+>> It involves splitting the multi-class dataset into multiple binary classification problems
+>> A binary classifier is then trained on each binary classification problem and predictions are made using the model that is the most confident.
+
+
+## Multiclass Classification - One Vs One
+
+>> The one-vs-one approach splits the dataset into one dataset for each class versus every other class.
+>> We learn a model for every pair of classes, hence there are NC2 classifiers are learned for N classes.
+>> Each binary classification model may predict one class label and the label with the most predictions or votes is predicted by the one-vs-one strategy.
+>> This approach is suggested for support vector machines (SVM) and related kernal-based algorithms.
+
+
+%--------------------------------------------------- Section 6: Dimensionality Reduction and Feature Selection--------------------------------------------------------%
+
+## Curse of Dimensionality
+
+- Increaring number of features hurts
+
+
+## Feature Selection Vs Feature Extraction
+
+
+Feature Selection
+- Feature selection is a way of selecting the subset of the most relevant features from the original features set by removing the redundant, irrelevant, or noisy features.
+
+Types of Feature Selection
+- Filter Method
+- Wrapper Method
+- Embedded Method
+
+
+Filter Method
+- checks the relevance of the feature with the o/p variable
+Note:- Filter method applies before machine learning algorithm.
+
+
+Wrapper Method
+- Forward Selection
+- Backward Elimination
+Note:- Wrapper method you can apply to any machine learning algorithms (Linear, Logistic, K-Mean, Decision Tree)
+
+
+Embedded Method
+- combines the qualities' of filter and wrapper methods.
+- L1 regularisation, Decision Trees, RandomForest etc.
+
+
+%--------------------------------------------------- Section 7: Principal Component Analysis --------------------------------------------------------%
+
+## Intro PCA ( Principal Component Analysis)
+
+- It is dimensionality reduction technique.
+- It is a Feature Extraction algorithm, not a feature selection.
+- convert n features to k, where k<n
+Note:- PCA are unsupervised technique. No need of label (y) feature.
+
+- Application;
+>> Data Compression
+	- e.g. Converting a 50D data into 10D
+>> Data Visualization
+	- reducing the dimension to 2D or 3D , in order to visualize the dataset.
+>> Speed Up Computation
+	- reduces load on memory
+
+## Conceptual Overview of PCA
+
+- Intuition of PCA
+	>> preserve the direction/feature having maximum variability
+	>> more spread = more information
+
+
+## Maximising Variance
+
+- PCA Objective - Maximising Variance
+
+ ∑ = i(1 .....m)
+
+var {U(1)^T x(i)} =>  ∑ {(U(1)^T X(i) - U(1)^T(X)}^2/m
+
+
+## Minimizing Distances
+
+- PCA Objective - Minimizing Distances
+
+min(U(1)) ∑ d(i)^2
+
+
+## Eigen Values & Eigen Vectors
+
+
+
+## PCA Summary
+
+
+
+## Understanding Eigen Values
+
+
+
+## PCA Code
+
+
+## Choosing the right dimensions
+
+
+
+
+%--------------------------------------------------- Section 8: K-Nearest Neigbours --------------------------------------------------------%
+
+## Parametric Models;
+
+>> Parametric models are those where the hypothesis function h can be indexed by fixed number of parameters.
+>> That is, the number of parameters of the model (hypothesis) are fixed and do not change with the increase in the data set size. 
+
+- e.g. Linear Regression, Logistic Regression, Neural Networks
+
+## Non-Parametric Methods;
+
+>> The number of parameters describing the model/hypothesis usually grows with the dataset size.
+>> In decision trees, the parameters of the model, which is the tree size, is certainly not fixed and usually changes with the size of the data.
+>> For example, smaller datasets could be modeled with small size trees and larger datasets could require bigger trees.
+>> These models are more flexible to the shape of the training data, but this sometimes comes at the cost of interpretability.
+>> It can be used for both Classification & Regression.
+-e.g. KNN :- Classification & Regression
+-e.g. Decision Trees :- Classification & Regression
+
+
+## KNN (K-Nearest Neigbours) Idea 
+
+1) Find out the similarity (or distance) of test example(s) with all points in the training data.
+2) Measure dist to all m points
+3) Sort result according to distances/ similarity score
+4) K-closet points
+5) Take mean of nearest K values for regression , or take majority label from nearest K values for classification.
+
+
+## KNN Data Prep
+
+
+## KNN Data Prep
+
+
+## KNN Algorithm Code
+
+
+## Euclidean and Manhattan Distances
+
+Euclidean =  sqrt[∑(p(i) - q(i))^2]
+
+## Deciding value of K-Mean
+
+
+## KNN and Data Standardisation
+- KNN requires scaling of data.
+
+## KNN Pros and Cons
+
+
+## KNN using Sk-learn
+
+
+https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html
+
+
+
+%--------------------------------------------------- Section 9: PROJECT - Face Recognition --------------------------------------------------------%
+
+
+- OpenCV python library
+- Read image
+- Haarcascades Classifier for image to detect objects in images.
+- Download the frontalface template for image matching from github link below;
+https://github.com/opencv/opencv/tree/master/data/haarcascades
+https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_alt.xml
+
+
+- ## Project Face Recognition
+1. Collect data of various person
+	- Asking multiple people to come in front of webcam , click 20 each pictures each
+	- Store the part of the image containing the face (Haarcascades to detect the face)
+
+2. Train a classifier to learn who is the person (Classification)
+3. Predicting the name of the person.
+
+
+
+%--------------------------------------------------- Section 10:K-Means --------------------------------------------------------%
+## K-Means
+>> Clustering Idea
+>> K-Means
+
+## K-Means Clustering
+>> The goal of clustering is to create groups of data points such that points in different cluster are dissimilar while points within a cluster are similar
+
+- Steps
+1) Define the k centroids.
+2) Update cluster assignments.
+3) Update Centroids.
+
+Euclidean =  sqrt[∑(p(i) - q(i))^2]
+
+## Further Reading....
+1) Initialisation Strategies
+
+2) Improvements:
+
+	K-Medians, K-Means++ , EM Algorithm
+	
+3) Hierarchical Clustering
+
+4) DBSCAN Algorithm
+
+
+
+%--------------------------------------------------- Section 11: Project -Dominant Color Extraction--------------------------------------------------------%
+
+# Basic Segmentation based upon similar color regions
+# Segmentation partitions an image into regions
+# having similar visual appearance corresponding to parts of objects.
+
+
+
+
+%--------------------------------------------------- Section 12: Naive Bayes Algorithms --------------------------------------------------------%
+
+## Bayes Theorem
+1. Probability Theorem
+2. Widely used for Text Classification
+3. Design for email spam filters
+
+Where;
+	A, B is any random events.
+	P(A) = Prior Probability
+	P(B) = marginal evidence Probability
+	P(B|A) = likelihood 
+	P(A|B) = Posterior Probability
+
+P(A|B) = [P(B|A) * P(A)] / P(B)
+
+## Derivation of Bayes Theorem
+
+P(A|B) = P(A ∩ B)/P(B) -- (1)
+
+where, P(A ∩ B) = P(B ∩ A) - intersection is commutative. 
+
+P(B|A) = P(B ∩ A)/P(A)   --- (2)
+
+P(A|B). P(B) = P(A ∩ B)
+
+P(B|A). P(A) = P(B ∩ A)
+
+P(A|B).P(B) = P(B|A).P(A)
+P(A|B) = P(B|A).P(A)/P(B)
+
+
+## Bayes Theorem Question;
+
+
+
+## Naive Bayes Algorithm
+
+- Spam or Non Spam Emails
+- Find the Posterior Probability of Both classes Y=1, Y=0
+- X given text email
+
+- P(Y = 1|X)
+- P(Y = 0|X)
+- argmax P(y|X)
+
+
+P(Y=0|X) = {P(X|Y=0).P(Y=1)}/P(X)
+P(Y=1|X) = {P(X|Y=1).P(Y=1).P(Y=1)}/P(X)
+
+P(X) = {P(X|Y=0).P(Y=0) + P(X|Y=1).P(Y=1)}
+
+Prior P(Y=1) = (Count all examples having Y=1) / (Total no. of examples)
+
+Prior P(Y=0) = (Count all examples having Y=0) / (Total no. of examples)
+
+## Computing Likelihood
+
+Likelihood P(X|Y=1) => P(<X1,X2,X3.....Xn> | Y=1)
+
+=> P(X1|Y=1).P(X2|Y=1, X1).P(X3|Y=1, X1,X2).....P(Xn|Y=1,X1,X2...Xn-1)
+
+Joint Probability  P(A,B) = P(A ∩ B)
+
+Assumptions;
+- Features are independent
+- Conditional independence assumption
+
+=> P(X,|Y=1).P(X2|Y=1).P(X3|Y=1)......P(Xn|Y=1)
+
+- Likelihood;
+
+where :- Π (1......i)
+=> P(X|Y=1) =  Π P(Xi|Y=1)
+
+=> P(X|Y=0) =  Π P(Xi|Y=0)
+
+=> P(Y=1|X) =  {Π P(Xi|Y=1). P(Y=1)}/P(X)
+
+=> P(Y=1|X) =  {Π P(Xi|Y=0). P(Y=0)}/P(X)
+
+
+## Example Golf
+
+P(Y=1|X) = {Π P(Xi|Y=1)}. P(Y=1)
+
+P(Y=0|X) = {Π P(Xi|Y=0)}. P(Y=0)
+
+- Calculate Prior Probability; (Total events=14)
+- where ;
+- Play (Y) :- Yes(1)
+- Play (Y) :- No(0)
+
+- P(Y=1) => 9/14
+- P(Y=0) => 5/14
+
+>> P(Y=1|X) = {Π P(Xi|Y=1)}. P(Y=1)
+
+- P(Outlook=Sunny | Y=1) => 3/9
+
+- P(Temperature=Hot | Y=1) => 2/9
+
+- P(Humidity=Normal | Y=1) => 6/9
+
+- P(Wind=False | Y=1) => 6/9
+
+>> P(Y=0|X) = {Π P(Xi|Y=0). P(Y=0)
+
+- P(Outlook=Sunny | Y=0) => 2/5
+
+- P(Temperature=Hot | Y=0) => 2/5
+
+- P(Humidity=Normal | Y=0) => 1/5
+
+- P(Wind=False | Y=0) => 2/5
+
+>> P(Y=1 | X) => {Π P(Xi|Y=1)}. P(Y=1)
+			  => (3/9*2/9*6/9*6/9)*(9/14)
+			  => 0.0141
+
+>> P(Y=0|X) = {Π P(Xi|Y=0). P(Y=0)
+			  => (2/5*2/5*1/5*2/5)*(5/14)
+			  => 0.0068
+
+P(X) => 0.0141 + 0.0068
+
+
+
+%--------------------------------------------------- Section 13: Multinomial Naive Bayes --------------------------------------------------------%
+
+## Naive Bayes Classifier for Text Data;
+
+- Multinomial Naive Bayes
+>> Important is to compute the likelihood
+
+P(Y=1|X) 
+P(Y=0|X)
+
+Assumption : 
+1) Bag of words (BOW). (ordering doesn't matters)
+2) Conditional Independence P(Xi|Y)
+
+P(Y=1|X) = P(X|Y=1).P(Y=1)
+
+where:- P(X|Y=1) --> Likelihood
+
+- Multinomial Naive Bayes
+>> Multinomial distribution
+>> to compute likelihood;
+
+P(Xi|Yi) = c = count(Xi, Yi = c) / ∑ count(w,Yi = c)
+
+## Laplace Smoothing;
+
+>> Laplace smoothing (also known as add-one smoothing or a special case of additive smoothing) is a statistical technique used to 
+   avoid zero-probability estimates in categorical/discrete probability models.
+   When you estimate probabilities from observed counts (for example, in a multinomial or n-gram model), you might encounter events that never occurred in your training data. 
+   Without correction, such events get probability zero. 
+   Laplace smoothing works by adding a fixed small constant (commonly 1) to every count—seen or unseen—so that each possible event has at least a non-zero count.
+
+
+P(Y=1), P(Y-0) --> Prior Probability
+
+V => {w1,w2,w3............,wn}
+
+P(w1|Y=1) P(w1|Y=0) --> Conditional Probability
+P(w2|Y=1) P(w2|Y=0) --> Conditional Probability
+.
+.
+.
+P(wn|Y=1) P(wn|Y=0) --> Conditional Probability
+
+## Multinomial Naive Bayes;
+
+Likelihood;
+  
+  θj,c = (count of word j in class c + α)/{(total word-counts in class c)+ α V}
+  
+Prediction;
+
+  P(y=c | x) => P(y=c)x ∏nθj
+
+
+## Bernoulli Naive Bayes
+
+- Bernoulli consider only two outcomes or possibility.
+
+1. Bernoulli doesn't talk about the frequency of a feature/word.
+2. It is only concerned about whether a word is present or not (1 or 0).
+
+
+Likelihood;
+  P(Xi|Yi = c) = count(di contains Xi,Yi = c) + alpha/{(count(Yi = c)+(2.alpha)}
+  
+  
+## Bias Variance Tradeoff:
+
+1) if α = 0 (Overfitting), P(Wi | Y=1) =  2/1000 
+
+2) if α = 10000 (Underfitting), P(Wi | Y=1) = (2 + 10000)/(1000 + 20000) = 1/2 
+
+ 
+## Gaussian Naive Bayes;
+
+- Let assume features are real numbers.
+- Features are normally distrubuted gaussian.
+- Probability Density function (pdf).
+
+>> Posterior Probability :- P(Y=1|Xn) =>  ∏ P(Xi | Y=1).P(Y=1)
+
+
+
+
+%--------------------------------------------------- Section 14: PROJECT : Spam Classifier --------------------------------------------------------%
+
+
+
+
+
+
+%--------------------------------------------------- Section 15: Decision Tree  --------------------------------------------------------%
+
+
+## Decision Tree;
+
+1. Decision tree are supervised models.
+2. Can be used for both classification/regression(Linear,Logistic) tasks
+3. They are simple tree like structure (hierarchical in nature)
+4. Decision trees can be thought as nested if else conditions.
+5. Highly interpretable models, easy to explain the workings.
+6. Easy to interpret and represented
+7. Mimic human level thought.tries to take decisions like a human does.
+8. Ensemble models are made of Decision tress that performs even better than individual Decision trees.
+9. When feature are categorical , Decision trees are preffered over other models.
+
+ 
+## Entropy (Randomness , Uncertainity)
+
+- How to decide the root node.
+=> Entropy - H(s) = - ∑  Pi[Log2P(i)] = 1 (High Uncertainity)
+
+=> Entropy - H(s) = 0 (Less Uncertainity)
+
+Pi = Probability
+
+
+## Information Gain;
+
+- Reduction in Entropy
+
+Gain(Y,A) = H(Y) - ∑ {|Di|/|D|}H(Y)
+
+
+
+## Stopping Condition
+1. Pure Node
+2. Can't grow the tree anymore because of lack of points.
+3. If already reach a max depth.
+
+
+
+
+%--------------------------------------------------- Section 16: Decision Tree Implementation --------------------------------------------------------%
+
+## Handling Numeric Features
+
+Step:-
+
+1. Sort the whole data.
+2. Two way splits
+
+
+## Bias Variance Tradeoff
+
+- Depth (Deep)
+>> relying on very data pts
+>> asking lots of questions. (interpretability is low)
+>> Overfitting
+>> Use learning stopping
+>> Pruning of Trees (Post and Pre)
+
+
+- Depth (low)
+>> Underfitting
+
+
+## Decision Trees for Regression
+
+- Mean Squares Error (MSE)
+- Target value = mean of 'y'
+- MSE => W1.MSE(1)  + W2.MSE(2)....
+
+
+%--------------------------------------------------- Section 17: PROJECT - Titanic Survival Prediction --------------------------------------------------------%
+
+
+
+
+
+
+
+%--------------------------------------------------- Section 18: Ensemble Learning : Bagging--------------------------------------------------------%
+
+
+## Ensemble Models;
+- Group / collection of things
+- Multiple models combined together to create a powerful model
+- Individual Models are known as Base Models.
+- More different base models are, the better results we can achieve
+
+- M1,M2,M3....Mk} --> Base Models
+
+
+
+## Types of Ensemble Models
+
+1. Bagging
+2. Boosting
+
+
+## Bagging Model (Bootstrap Aggregation [Bagging])
+1. Bootstrap Sampling i.e sampling with replacement.
+2. Aggregation
+
+Dataset = Dm
+
+Dm = {(x , y)}^m
+
+- Boostrap Sampling --> Models --> Aggregation --> Final Model
+
+
+## Why Bagging Helps
+
+- Bagging reduces the variance of a model, while keeping the bias as low. Randomization.
+
+- Variance -> High Variance --> Overfitting
+- Variance -> Low Variance --> Underfitting
+
+- Bagging : Models(high var, low bias) + randomization + aggregation
+
+## Random Forest Algorithm
+
+- Random : Boostrap sampling
+- Forest : Group of trees
+- RF = Decision Tree + Row Sampling + Feature Sampling
+
+
+
+
+## Bias Variance Tradeoff
+
+- RF reduces variance
+
+Bias(M) = average_bias(M1,M2,M3.....Mk)
+
+Variance (M) = aggregration (M1,M2....Mk) 
+- No. of models - K(high) = Low Variance
+- No. of models - K(low) = High Variance
+
+- C.S.R (Column Sampling Ratio)
+- R.S.R (Row Sampling Ratio)
+
+
+
+%--------------------------------------------------- Section 19: Ensemble Learning : Boosting --------------------------------------------------------%
+
+- Ensemble : Boosting Introduction
+>> Idea: Combine multiple weak learners to form a strong learner to increase the model performance.
+>> Bagging: Model(high var, low bias) + randomization + aggregration
+>> Boosting: Models (low var, high bias) + additively combine
+
+Note: Bagging is Parallel. Boosting is Sequential.
+
+Most Popular Boosting algorithms are:
+
+>> Gradient Boosting (GBDT)
+>> Adaptive Boosting  (AdaBoost, XGBoost)
+
+- Boosting Intuition
+>> Idea : Boosting reduces high bias, while keeping the variance same.
+
+- Boosting : Mathematical Formulation
+
+D_train = {Xi, Yi}
+M0 = avg(Yi)
+
+F1(x) = model at the end of stage 1
+
+Fk(xi) = h0(x) + α1.h1(x) + α2.h2(x) + ...... + αk.hk(x)
+
+where ; α1 = weight factor
+
+
+## Concepts of Pseudo Residuals
+
+residual at end of stage k }  error_i = yi - Fk (xi) 
+
+
+M(k+1) -> {xi, error_i}
+
+## Loss minimization
+
+
+
+## Gradient Boosting Decision Tree
+
+
+## XGBoost (Extreme Gradient Boosting)
+
+
+>> pip install xgboost
+
+
+## AdaBoost (Adaptive Boost)
+
+
+
+
+%--------------------------------------------------- Section 20: PROJECT: Customer Churn Prediction --------------------------------------------------------%
+
+
+
+https://www.kaggle.com/datasets/shrutimechlearn/churn-modelling?resource=download
+
+
+
+%--------------------------------------------------- Section 21: Deep Learning Introduction - Neural Network --------------------------------------------------------%
+
+## Biological Neural Network
+
+- Neuron
+- Dendrite
+- Axon
+
+
+
+## A Neuron
+
+
+## How does a perceptron (Neuron) learn?
+
+1. Data
+2. Model
+3. Loss Function (Log-Loss(BCE)
+4. Gradient Descent
+
+L(a,y) = -1/m(∑ Y(i) loga(i) + (1 -Y) log(1-a))
+
+## Gradient Descent Updates
+
+Perceptron => Neuron => Logistic Regression (Linear Model) - Linear Decision Boundary
+
+Loss = -1/m(∑ Yi logYi + (1 -Yi) log(1-Yi))
+
+
+
+## Neural Networks
+
+1. One Layer Neural Network
+2. Two Layer Neural Network
+
+
+
+## 3 Layer NN
+
+
+## Why Neural Nets?
+
+- 
+
+
+## Tensoflow Playground
+
+https://playground.tensorflow.org/
+
+
+
+## CODE - Data Preparation
+
+
+## CODE - Model Building
+
+
+## CODE - Model Training and Testing
+
+
+
+
+
+
+
+%--------------------------------------------------- Section 22: PROJECT - Pokemon / Image Classification --------------------------------------------------------%
+
+
+## Dataset Source
+
+https://www.dropbox.com/scl/fo/oi9huerppteppcz5t5b32/AJ_ykZC9n5AA0BJat_LlnYI?rlkey=uas4cay1272poo2jc6gf0n5rp&e=1
+
+
+## Softmax Function (for multi classification)
+
+- Softmax is generalized version of the sigmoid function
+- It generates probability distribution across multiple classes.
+
+
+ σ(z) = exp(Zi)/ ∑{exp(Zj)}
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin https://github.com/jnybrahma/ML_Essentials_Concepts.git
+git push -u origin master
