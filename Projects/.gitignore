@@ -1,0 +1,31 @@
+myenv/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.env
+secrets.toml
+.DS_Store
+
+# testing
+/coverage
+/Test
+/Train
+/images
+# production
+secrets.toml
+/.streamlit
+config.yaml
+.streamlit/secrets.toml
+.idea
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
